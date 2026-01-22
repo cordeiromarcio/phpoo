@@ -2,7 +2,7 @@
 
 class Conta
 {
-    protected  $agencia;
+    protected $agencia;
     protected $conta;
     protected $saldo;
 
@@ -18,12 +18,17 @@ class Conta
     public function depositar($quantia)
     {
         if ($quantia > 0){
-            $this->saldo+= $quantia;
+            $this->saldo += $quantia;
         }
     }
 
     public function getSaldo()
     {
         return $this->saldo;
+    }
+
+    public function getInfo()
+    {
+        return "Agencia: {$this->agencia}, Conta {$this->conta}";
     }
 }

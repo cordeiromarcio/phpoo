@@ -4,9 +4,9 @@ class ContaCorrente extends Conta
 {
     protected $limite;
 
-    public function __construct($agencia, $conta, $saldo)
+    public function __construct($agencia, $conta, $saldo, $limite)
     {
-        return parent::__construct($agencia, $conta, $saldo);
+        parent::__construct($agencia, $conta, $saldo);
         $this->limite = $limite;
     }
 
