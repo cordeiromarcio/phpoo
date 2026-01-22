@@ -10,7 +10,8 @@ class ContaCorrente extends Conta
         $this->limite = $limite;
     }
 
-    public function retirar($quantia)
+    //final de linha, não pode ser mais redefinido em classes filhas
+    public final function retirar($quantia)
     {
         if (($this->saldo + $this->limite) >= $quantia)
             {

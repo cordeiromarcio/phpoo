@@ -1,7 +1,7 @@
 <?php
 
 //Herança é definida pela palavra extends seguida da classe pai
-class ContaPoupanca extends Conta
+final class ContaPoupanca extends Conta
 {
     public function retirar($quantia)
     {
