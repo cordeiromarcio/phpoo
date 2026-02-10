@@ -3,7 +3,7 @@
 function lista_combo_cidades()
 {
     //cria conexão com o banco de dados
-$conn = mysqli_connect('127.0.0.1','root', '','myapp');
+$conn = mysqli_connect('127.0.0.1','root', '1234','myapp');
 
 $output = '';
 $result = mysqli_query($conn, 'SELECT id, nome FROM cidade');

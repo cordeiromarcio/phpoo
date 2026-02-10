@@ -3,7 +3,7 @@ $dados = $_POST;
 
 //print $dados['nome'];
     //cria conexão com o banco de dados
-$conn = mysqli_connect('127.0.0.1','root', '','myapp');
+$conn = mysqli_connect('127.0.0.1','root', '1234','myapp');
 
 $result = mysqli_query($conn, 'SELECT max(id) as next FROM pessoa');
 
