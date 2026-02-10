@@ -6,7 +6,7 @@ function lista_combo_cidades()
 $conn = mysqli_connect('127.0.0.1','root', '','myapp');
 
 $output = '';
-$result = mysqli_query($conn, 'SELECTED id, nome FROM cidade');
+$result = mysqli_query($conn, 'SELECT id, nome FROM cidade');
 
 if($result)
     {
