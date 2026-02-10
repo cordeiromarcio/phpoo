@@ -1,6 +1,6 @@
 <?php
 //cria conexão com o banco de dados
-$conn = mysqli_connect('127.0.0.1','root', '','myapp');
+$conn = mysqli_connect('127.0.0.1','root', '1234','myapp');
 
 // insere dados no banco de dados
 mysqli_query($conn, "INSERT INTO famosos (codigo, nome) VALUES (1,'Érico Veríssimo')");
