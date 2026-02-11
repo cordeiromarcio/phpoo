@@ -1,6 +1,6 @@
 <?php
 
-function lista_combo_cidades()
+function lista_combo_cidades($id_cidade =null)
 {
     //cria conexão com o banco de dados
 $conn = mysqli_connect('127.0.0.1','root', '1234','myapp');
@@ -14,7 +14,9 @@ if($result)
         {
             $id = $row['id'];
             $nome = $row['nome'];
-            $output .= "<option value={$id}> $nome </option>";
+            // Checar se há cidade selecionada no combobox
+            $check = ($id == $id_cidade) ? 'selected=1' : '';
+            $output .= "<option {$check} value='{$id}'> $nome </option>";
         }
     }
 
