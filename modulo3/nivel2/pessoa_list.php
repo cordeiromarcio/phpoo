@@ -23,7 +23,15 @@
             <?php
                 //cria conexão com o banco de dados
                 $conn = mysqli_connect('127.0.0.1','root', '1234','myapp');
-                $result = mysqli_query($conn, 'SELECT * from pessoa ORDER BY id');
+                
+                //Função da exclusão do registro
+                if (!empty($_GET['action']) and ($_GET['action'] == 'delete'))
+                    {
+                        $id = (int) $_GET['id'];
+                        mysqli_query($conn, "DELETE FROM pessoa WHERE id = '{$id}'");
+                    }
+
+                    $result = mysqli_query($conn, 'SELECT * from pessoa ORDER BY id');
 
                 while ($row = mysqli_fetch_assoc($result))
                     {
@@ -36,12 +44,27 @@
                         $id_cidade = $row['id_cidade'];
 
                         print '<tr>';
+                        
+                        //alteração de melhoria delete-list insert-edit
+                        /*------------------------Como era no nível 1----------------------
                         print "<td> <a href= 'pessoa_form_edit.php?id={$id}'>
                                     <img src='images/edit.svg' style='width:17px'>
                                     </a> </td>";
+
+                       
                         print "<td> <a href= 'pessoa_delete.php?id={$id}'>
                                     <img src='images/delete.svg' style='width:17px'>
                                     </a> </td>";
+                        
+                        -----------------------------------------------------------------*/
+                        print "<td> <a href= 'pessoa_form.php?action=edit&id={$id}'>
+                                    <img src='images/edit.svg' style='width:17px'>
+                                    </a> </td>";
+
+                        print "<td> <a href= 'pessoa_list.php?action=delete&id={$id}'>
+                                    <img src='images/delete.svg' style='width:17px'>
+                                    </a> </td>";
+
                         print "<td> {$id} </td>";
                         print "<td> {$nome} </td>";
                         print "<td> {$endereco} </td>";
@@ -54,9 +77,13 @@
 
 
     </table>
+    <!-- Como era nível 1-------------------------------------------
     <button onclick="window.location= 'pessoa_form_insert.php'">
         <img src="images/insert.svg" style="width: 17px">Inserir
     </button>
-    
+    --------------------------------------------------------------- -->
+    <button onclick="window.location= 'pessoa_form.php'">
+        <img src="images/insert.svg" style="width: 17px">Inserir
+    </button>
 </body>
 </html>
