@@ -1,5 +1,7 @@
     <?php
 
+require_once 'db/pessoa_db.php';
+
 $pessoa = [];
 $pessoa ['id']= '';
 $pessoa ['nome']= '';
@@ -11,16 +13,12 @@ $pessoa ['id_cidade']= '';
 
 
     if (!empty($_REQUEST['action'])) {
-        //cria conexão com o banco de dados
-        $conn = mysqli_connect('127.0.0.1', 'root', '1234', 'myapp');
+    
 
         if ($_REQUEST['action'] == 'edit') {
             if (!empty($_GET['id'])) {
                 $id = (int) $_GET['id'];
-                //Seleciona o id do registro a ser editado
-                $result = mysqli_query($conn, "SELECT * FROM pessoa WHERE id='{$id}'");
-                //retorna linha do resultado da busca
-                $pessoa= mysqli_fetch_assoc($result);
+                $pessoa = get_pessoa($id);
 
             }
         } else if ($_REQUEST['action'] == 'save') {
@@ -28,24 +26,16 @@ $pessoa ['id_cidade']= '';
             $pessoa = $_POST;
 
             if (empty($_POST['id'])) {
-                $result = mysqli_query($conn, "SELECT max(id) as next FROM pessoa");
-                $row = mysqli_fetch_assoc($result);
-                $next = (int) $row['next'] + 1;
 
-                $sql = "INSERT INTO pessoa (id, nome, endereco, bairro, telefone, email, id_cidade) VALUES ('{$next}', '{$pessoa['nome']}', '{$pessoa['endereco']}', '{$pessoa ['bairro']}', '{$pessoa ['telefone']}', '{$pessoa['email']}','{$passoa['id_cidade']}' )";
-                $result = mysqli_query($conn, $sql);
+                $pessoa['id'] = get_next_pessoa();
+                $result = insert_pessoa($pessoa);
+
             } else {
-                $sql = "UPDATE pessoa SET     nome = '{$pessoa['nome']}',
-                                              endereco = '{$pessoa['endereco']}',
-                                              bairro = '{$pessoa['bairro']}',
-                                              telefone = '{$pessoa['telefone']}',
-                                              email = '{$pessoa['email']}',
-                                              id_cidade = '{$pessoa['id_cidade']}' 
-                                              WHERE id = '{$id}' ";
-                $result = mysqli_query($conn, $sql);
+
+            $result = update_pessoa($pessoa);        
+
             }
             print ($result) ? 'Registro salvo com sucesso' : 'Erro';
-            mysqli_close($conn);
         }
     }
 

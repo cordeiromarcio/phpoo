@@ -27,10 +27,8 @@
                 $items .= $item;
             }
 
-
             $list = file_get_contents('html/list.html');
-            $list =str_replace('{items}', $items, $list);
+            $list = str_replace('{items}', $items, $list);
             print $list;
 
             ?>
-        
