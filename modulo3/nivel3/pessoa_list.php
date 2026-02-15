@@ -1,8 +1,10 @@
             <?php
             //cria conexão com o banco de dados
+            
             $conn = mysqli_connect('127.0.0.1', 'root', '1234', 'myapp');
 
             //Função da exclusão do registro
+
             if (!empty($_GET['action']) and ($_GET['action'] == 'delete')) {
                 $id = (int) $_GET['id'];
                 mysqli_query($conn, "DELETE FROM pessoa WHERE id = '{$id}'");
