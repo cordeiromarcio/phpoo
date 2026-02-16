@@ -8,13 +8,13 @@ class PessoaForm
     public function __construct()
     {
         $this->html = file_get_contents('html/form.html');
-        $this->data = [ 'id' => null,
-                        'nome' => null,
-                        'endereco' => null,
-                        'bairro' => null,
-                        'telefone' => null,
-                        'email' => null,
-                        'id_cidade' => null];
+        $this->data = [ 'id' => '',
+                        'nome' => '',
+                        'endereco' => '',
+                        'bairro' => '',
+                        'telefone' => '',
+                        'email' => '',
+                        'id_cidade' => ''];
 
                         $cidades = '';
                         foreach (Cidade::all() as $cidade)
