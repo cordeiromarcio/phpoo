@@ -17,7 +17,7 @@ class ProdutoGateway
         return $result->fetchObject($class);
     }
 
-    public function all($filter, $class = 'stdClass')
+    public function all($filter = '', $class = 'stdClass')
     {
         $sql = "SELECT * FROM produto ";
         if ($filter)
