@@ -15,6 +15,13 @@ try
     $produto->codigo_barras = '1234567890123';
     $produto->data_cadastro = date('Y-m-d');
     $produto->origem = 'N';
+
+$conn = Connection::open('estoque');
+
+echo "Banco conectado";
+exit;
+
+
     $produto->save();
 
 }
