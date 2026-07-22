@@ -4,6 +4,7 @@ require_once 'classes/api/Connection.php';
 
 try
 {
+    
     $conn = Connection::open('estoque');
     Produto::setConnection($conn);
 
@@ -18,8 +19,6 @@ try
 
 $conn = Connection::open('estoque');
 
-echo "Banco conectado";
-exit;
 
 
     $produto->save();
