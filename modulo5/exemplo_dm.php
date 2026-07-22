@@ -34,3 +34,4 @@ catch (PDOException $e)
 CREATE TABLE venda (id integer PRIMARY KEY NOT NULL, data_venda date);
 
 CREATE TABLE item_venda (id integer PRIMARY KEY NOT NULL, id_produto integer references produto(id), id_venda integer references venda(id),quantidade float, preco float);
+*/
