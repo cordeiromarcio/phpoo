@@ -46,4 +46,4 @@ class Connection
     }
 }
 
-Connection::open('estoque');
+//Connection::open('estoque');
