@@ -11,7 +11,7 @@ class VendaMapper
     public static function save (Venda $venda)
     {
         $data = date('Y-m-d');
-        $sql = "INSERT INTO venda (data venda) values ('$data')";
+        $sql = "INSERT INTO venda (data_venda) values ('$data')";
         print $sql . "<br>";
         self::$conn->query($sql);
 
