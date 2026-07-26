@@ -1,0 +1,1 @@
+2026-07-26 13:28:42 : INSERT INTO produto (id, descricao, estoque, preco_custo,  preco_venda, codigo_barras, data_cadastro, origem) VALUES ('5' , 'Chocolate Branco', '70', '3', '5', '1234567890123', '2026-07-26', 'N')
