@@ -4,6 +4,18 @@ abstract class Record
 {
     protected $data;
 
+    public function __construct($id = NULL)
+    {
+        if ($id)
+        {
+            $object = $this->load($id);
+            if ($object)
+            {
+                $this->fromArray($object->toArray());
+            }
+        }
+    }
+
     public function __set($prop, $value)
     {
         if ($value === null) {
@@ -45,11 +57,72 @@ abstract class Record
 
     public function getEntity()
     {
-        return get_class($this);
+        $class = get_class($this);
+
+        return constant("{$class}::TABLENAME");
     }
+
+    public function load($id)
+    {
+        $sql = "SELECT * FROM {$this->getEntity()} WHERE id =" . (int) $id;
+
+        if ($conn = Transaction::get())
+            {
+                Transaction::log($sql);
+                $result = $conn->query($sql);
+
+                if ($result)
+                    {
+                        return $result->fetchObject(get_class($this));
+                    }
+            }
+            else
+                {
+                    throw new Exception('Não há transação ativa!!');
+                }
+    }
+
+    public function store()
+    {
+        if ($conn = Transaction::get())
+            {
+                Transaction::log($sql);
+                $result = $conn->query($sql);
+            }
+            else
+                {
+                    throw new Exception('Não há transação ativa!!');
+                }
+    }
+
+    public function delete()
+    {
+        if ($conn = Transaction::get())
+            {
+                Transaction::log($sql);
+                $result = $conn->query($sql);
+            }
+            else
+                {
+                    throw new Exception('Não há transação ativa!!');
+                }
+    
+    }
+
+
+    
+
 }
 
-$produto = new Produto;
+class Produto extends Record
+{
+    const TABLENAME = 'produto';
+}
+
+Transaction::open('estoque');
+
+$produto = new Produto(1);
+print $produto->nome;
 
 $produto = new Produto;
 $produto->id = 1;
